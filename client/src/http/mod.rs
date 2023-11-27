@@ -19,7 +19,7 @@ use crate::{
 
 pub fn build(
     settings: ClientSettings,
-    taple_api: Api,
+    kore_api: Api,
     keys: KeyPair,
     cancellation_token: CancellationToken,
 ) {
@@ -28,10 +28,10 @@ pub fn build(
         .unwrap();
 
     let client_api = http::api::routes(
-        taple_api,
+        kore_api,
         keys,
         settings.subjects_key_derivator,
-        settings.taple.node.digest_derivator,
+        settings.kore.node.digest_derivator,
     );
 
     if settings.doc {

@@ -7,7 +7,7 @@ use kore_base::{signature::Signature, EventRequest};
 #[derive(Parser, Default, Debug)]
 #[clap(
     version,
-    about = "TAPLE requests generator utility for invokation to TAPLE nodes"
+    about = "KORE requests generator utility for invokation to KORE nodes"
 )]
 struct Args {
     /// Private key to use. HEX String format

@@ -7,7 +7,7 @@ use kore_client::{
     Client,
 };
 
-use taple_core::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial};
+use kore_core::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial};
 use tempfile::tempdir;
 use tokio::sync::oneshot;
 
@@ -20,7 +20,7 @@ fn http_server_working() {
             ClientSettings::generate(&SettingsMap::new()).expect("Create ClientSettings");
 
         settings.http = true;
-        settings.taple.node.secret_key = {
+        settings.kore.node.secret_key = {
             let keypair = Ed25519KeyPair::from_seed(&[]);
             hex::encode(keypair.secret_key_bytes())
         };

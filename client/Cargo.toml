@@ -24,7 +24,6 @@ thiserror = { workspace = true }
 tempfile = { workspace = true }
 hex = { workspace = true }
 home = { workspace = true }
-taple-core = { workspace = true, features = ["all"] }
 kore-base = { workspace = true, features = ["all"] }
 easy_settings = { path = "../easy_settings" }
 leveldb = { workspace = true }

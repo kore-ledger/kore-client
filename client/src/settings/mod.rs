@@ -19,7 +19,7 @@ pub fn create_path(name: &str) -> Result<String, SettingsError> {
     } else {
         std::env::temp_dir()
     };
-    let path = format!("{}/.taple/{}", path.display(), name);
+    let path = format!("{}/.kore/{}", path.display(), name);
     Ok(path)
 }
 

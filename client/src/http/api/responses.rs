@@ -4,7 +4,7 @@ use crate::http::api::bodys::SignatureBody;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use kore_base::identifier::Derivable;
-use kore_base::request::{RequestState, TapleRequest};
+use kore_base::request::{RequestState, KoreRequest};
 use kore_base::KeyIdentifier;
 use kore_base::{
     ApprovalEntity, ApprovalRequest, ApprovalResponse, ApprovalState, Event, SubjectData,
@@ -262,16 +262,16 @@ impl From<ApprovalEntity> for ApprovalEntityResponse {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
-pub struct TapleRequestResponse {
+pub struct KoreRequestResponse {
     #[serde(flatten)]
-    /// Type of event issued to taple
+    /// Type of event issued to kore
     pub request: EventRequestBody,
     /// Signature of the person who issued the event
     pub signature: SignatureBody,
 }
 
-impl From<TapleRequest> for TapleRequestResponse {
-    fn from(value: TapleRequest) -> Self {
+impl From<KoreRequest> for KoreRequestResponse {
+    fn from(value: KoreRequest) -> Self {
         let request = value.event_request;
         Self {
             request: request.content.try_into().unwrap(),
@@ -281,7 +281,7 @@ impl From<TapleRequest> for TapleRequestResponse {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
-pub struct TapleRequestStateResponse {
+pub struct KoreRequestStateResponse {
     /// Request identifier
     id: String,
     /// Subject identifier
@@ -294,8 +294,8 @@ pub struct TapleRequestStateResponse {
     success: Option<bool>,
 }
 
-impl From<TapleRequest> for TapleRequestStateResponse {
-    fn from(value: TapleRequest) -> Self {
+impl From<KoreRequest> for KoreRequestStateResponse {
+    fn from(value: KoreRequest) -> Self {
         Self {
             id: value.id.to_str(),
             subject_id: value.subject_id.map(|id| id.to_str()),

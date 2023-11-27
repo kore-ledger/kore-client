@@ -16,7 +16,7 @@ use warp::{
     info(
         license(
             name = "AGPL-3.0-only",
-            url = "https://raw.githubusercontent.com/opencanarias/taple-client/main/LICENSE"
+            url = "https://raw.githubusercontent.com/opencanarias/kore-client/main/LICENSE"
         )
     ),
     paths(
@@ -27,8 +27,8 @@ use warp::{
         get_event_handler,
         get_events_of_subject_handler,
         get_subject_handler,
-        get_taple_request_handler,
-        get_taple_request_state_handler,
+        get_kore_request_handler,
+        get_kore_request_state_handler,
         get_validation_proof_handle,
         patch_approval_handler,
         post_event_request_handler,
@@ -51,11 +51,11 @@ use warp::{
             SubjectDataResponse,
             TransferRequestBody,
             EOLRequestBody,
-            TapleRequestStateResponse,
+            KoreRequestStateResponse,
             RequestStateResponse,
             ApprovalStateResponse,
             ApprovalEntityResponse,
-            TapleRequestResponse,
+            KoreRequestResponse,
             AuthorizeSubjectBody,
             PreauthorizedSubjectsResponse,
             ValidationProofResponse,

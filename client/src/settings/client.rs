@@ -10,7 +10,7 @@ use super::{extract_boolean, extract_from_map, extract_list, SettingsGenerator};
 
 #[derive(Clone, Debug)]
 pub struct ClientSettings {
-    pub taple: Settings,
+    pub kore: Settings,
     pub http: bool,
     pub http_addr: String,
     pub http_port: u32,
@@ -48,11 +48,11 @@ impl SettingsGenerator for ClientSettings {
             }
             list
         };
-        let mut taple_settings = Settings::generate(data)?;
-        taple_settings.network.listen_addr = listen_addr;
+        let mut kore_settings = Settings::generate(data)?;
+        kore_settings.network.listen_addr = listen_addr;
         let database_path = create_database_path(data)?;
         Ok(Self {
-            taple: taple_settings,
+            kore: kore_settings,
             http: extract_boolean(data, "http", false)?,
             http_addr: extract_from_map(data, "addr", "0.0.0.0".into())?,
             http_port: extract_from_map(data, "port", 3000u32)? + ports_offset,
@@ -112,8 +112,8 @@ pub fn client_settings_builder() -> SettingsBuilder {
         .program_name(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .author("Open Canarias")
-        .usage("taple-client [OPTIONS]")
-        .prefix("TAPLE")
+        .usage("kore-client [OPTIONS]")
+        .prefix("KORE")
         .unwrap()
         .add_toml("settings.toml")
         .group(
@@ -236,7 +236,7 @@ pub fn client_settings_builder() -> SettingsBuilder {
         .add_setting(
             SettingSchemaBuilder::new("id-key-derivator")
                 .unwrap()
-                .help("Key derivator used by the private that employs the TAPLE node")
+                .help("Key derivator used by the private that employs the KORE node")
                 .param_type(ParamType::Enum(vec!["ed25519".into(), "secp256k1".into()]))
                 .with_default(key_derivator_conversion(
                     default_settings.node.key_derivator,

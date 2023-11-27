@@ -24,8 +24,8 @@ use super::{
     querys::{GetAllSubjectsQuery, GetApprovalsQuery, GetWithPagination},
     responses::{
         ApprovalEntityResponse, EventContentResponse, GetProofResponse,
-        PreauthorizedSubjectsResponse, SignedEvent, SubjectDataResponse, TapleRequestResponse,
-        TapleRequestStateResponse, ValidationProofResponse,
+        PreauthorizedSubjectsResponse, SignedEvent, SubjectDataResponse, KoreRequestResponse,
+        KoreRequestStateResponse, ValidationProofResponse,
     },
 };
 
@@ -474,7 +474,7 @@ pub async fn post_generate_keys_handler(
 
 /// Send event request
 ///
-/// Allows to send an event request for a subject to the TAPLE node.
+/// Allows to send an event request for a subject to the KORE node.
 /// These requests can be of any type of event (done, creation, transfer and end of life).
 /// In case of external invocation, the requests can be signed.
 #[utoipa::path(
@@ -557,7 +557,7 @@ pub async fn post_event_request_handler(
         ("id" = String, Path, description = "Event Request's unique id"),
     ),
     responses(
-        (status = 200, description = "Request Data successfully retrieved", body = TapleRequestResponse,
+        (status = 200, description = "Request Data successfully retrieved", body = KoreRequestResponse,
         example = json!(
             {
                 "Fact": {
@@ -590,12 +590,12 @@ pub async fn post_event_request_handler(
         (status = 500, description = "Internal Server Error"),
     )
 )]
-pub async fn get_taple_request_handler(
+pub async fn get_kore_request_handler(
     request_id: String,
     node: Api,
 ) -> Result<Box<dyn warp::Reply>, Rejection> {
     let result = if let Ok(id) = DigestIdentifier::from_str(&request_id) {
-        node.get_request(id).await.map(TapleRequestResponse::from)
+        node.get_request(id).await.map(KoreRequestResponse::from)
     } else {
         Err(ApiError::InvalidParameters(
             "ID specified is not a valid Digest Identifier".to_string(),
@@ -617,7 +617,7 @@ pub async fn get_taple_request_handler(
         ("id" = String, Path, description = "Event Request's unique id"),
     ),
     responses(
-        (status = 200, description = "Request Data successfully retrieved", body = TapleRequestStateResponse,
+        (status = 200, description = "Request Data successfully retrieved", body = KoreRequestStateResponse,
         example = json!(
             {
                 "id": "JyyWIjUa3Ui04oTSN4pJFT8FhmgPRPXzsG4_tIX8IBFg",
@@ -632,14 +632,14 @@ pub async fn get_taple_request_handler(
         (status = 500, description = "Internal Server Error"),
     )
 )]
-pub async fn get_taple_request_state_handler(
+pub async fn get_kore_request_state_handler(
     request_id: String,
     node: Api,
 ) -> Result<Box<dyn warp::Reply>, Rejection> {
     let result = if let Ok(id) = DigestIdentifier::from_str(&request_id) {
         node.get_request(id)
             .await
-            .map(TapleRequestStateResponse::from)
+            .map(KoreRequestStateResponse::from)
     } else {
         Err(ApiError::InvalidParameters(
             "ID specified is not a valid Digest Identifier".to_string(),

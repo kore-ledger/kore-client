@@ -18,7 +18,7 @@ use warp::{http::Response, hyper::StatusCode, Filter, Rejection, Reply};
 const API_BASE_PATH: &str = "api";
 
 pub fn routes(
-    taple_api: Api,
+    kore_api: Api,
     keys: KeyPair,
     derivator: KeyDerivator,
     digest_derivator: DigestDerivator,
@@ -26,94 +26,94 @@ pub fn routes(
     let root = warp::path(API_BASE_PATH);
 
     root.and(
-        get_subject(taple_api.clone())
-            .or(get_all_subjects(taple_api.clone()))
-            .or(get_subject(taple_api.clone()))
+        get_subject(kore_api.clone())
+            .or(get_all_subjects(kore_api.clone()))
+            .or(get_subject(kore_api.clone()))
             .or(post_event_request(
-                taple_api.clone(),
+                kore_api.clone(),
                 keys,
                 derivator,
                 digest_derivator,
             ))
-            .or(get_events_of_subject(taple_api.clone()))
-            .or(get_event(taple_api.clone()))
-            .or(patch_approval(taple_api.clone()))
-            .or(post_preauthorized_subjects(taple_api.clone()))
-            .or(get_preauthorized_subjects(taple_api.clone()))
-            .or(get_events_of_subject(taple_api.clone()))
-            .or(get_validation_proof(taple_api.clone()))
-            .or(post_generate_keys(taple_api.clone()))
-            .or(get_event_request(taple_api.clone()))
-            .or(get_approval(taple_api.clone()))
-            .or(get_pending_approvals(taple_api.clone()))
-            .or(get_event_request_state(taple_api))
+            .or(get_events_of_subject(kore_api.clone()))
+            .or(get_event(kore_api.clone()))
+            .or(patch_approval(kore_api.clone()))
+            .or(post_preauthorized_subjects(kore_api.clone()))
+            .or(get_preauthorized_subjects(kore_api.clone()))
+            .or(get_events_of_subject(kore_api.clone()))
+            .or(get_validation_proof(kore_api.clone()))
+            .or(post_generate_keys(kore_api.clone()))
+            .or(get_event_request(kore_api.clone()))
+            .or(get_approval(kore_api.clone()))
+            .or(get_pending_approvals(kore_api.clone()))
+            .or(get_event_request_state(kore_api))
             .recover(handle_rejection),
     )
 }
 
 pub fn get_approval(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("approval-requests" / String)
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and_then(get_approval_handler)
 }
 
 pub fn get_pending_approvals(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("approval-requests")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(warp::query::<GetApprovalsQuery>())
         .and_then(get_approvals_handler)
 }
 
 pub fn get_event_request(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("event-requests" / String)
         .and(warp::get())
-        .and(with_taple_api(taple_api))
-        .and_then(get_taple_request_handler)
+        .and(with_kore_api(kore_api))
+        .and_then(get_kore_request_handler)
 }
 
 pub fn get_event_request_state(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("event-requests" / String / "state")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
-        .and_then(get_taple_request_state_handler)
+        .and(with_kore_api(kore_api))
+        .and_then(get_kore_request_state_handler)
 }
 
-pub fn get_subject(taple_api: Api) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
+pub fn get_subject(kore_api: Api) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("subjects" / String)
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and_then(get_subject_handler)
 }
 
 pub fn get_all_subjects(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("subjects")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(warp::query::<GetAllSubjectsQuery>())
         .and_then(get_subjects_handler)
 }
 
 pub fn post_event_request(
-    taple_api: Api,
+    kore_api: Api,
     keys: KeyPair,
     derivator: KeyDerivator,
     digest_derivator: DigestDerivator,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("event-requests")
         .and(warp::post())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(with_keys(keys))
         .and(with_derivator(derivator))
         .and(with_digest_derivator(digest_derivator))
@@ -122,75 +122,75 @@ pub fn post_event_request(
 }
 
 pub fn patch_approval(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("approval-requests" / String)
         .and(warp::patch())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(with_body())
         .and_then(patch_approval_handler)
 }
 
 pub fn post_generate_keys(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("keys")
         .and(warp::post())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(warp::query::<AddKeysQuery>())
         .and_then(post_generate_keys_handler)
 }
 
 pub fn post_preauthorized_subjects(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("allowed-subjects" / String)
         .and(warp::put())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(with_body())
         .and_then(put_allowed_subjects_handler)
 }
 
 pub fn get_preauthorized_subjects(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("allowed-subjects")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(warp::query::<GetWithPaginationString>())
         .and_then(get_allowed_subjects_handler)
 }
 
 pub fn get_events_of_subject(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("subjects" / String / "events")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and(warp::query::<GetWithPagination>())
         .and_then(get_events_of_subject_handler)
 }
 
-pub fn get_event(taple_api: Api) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
+pub fn get_event(kore_api: Api) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("subjects" / String / "events" / u64)
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and_then(get_event_handler)
 }
 
 pub fn get_validation_proof(
-    taple_api: Api,
+    kore_api: Api,
 ) -> impl Filter<Extract = impl Reply, Error = Rejection> + Clone {
     warp::path!("subjects" / String / "validation")
         .and(warp::get())
-        .and(with_taple_api(taple_api))
+        .and(with_kore_api(kore_api))
         .and_then(get_validation_proof_handle)
 }
 
-pub fn with_taple_api(
-    taple_api: Api,
+pub fn with_kore_api(
+    kore_api: Api,
 ) -> impl Filter<Extract = (Api,), Error = std::convert::Infallible> + Clone {
-    warp::any().map(move || taple_api.clone())
+    warp::any().map(move || kore_api.clone())
 }
 
 pub fn with_keys(

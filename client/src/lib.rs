@@ -15,7 +15,7 @@ use tokio_util::sync::CancellationToken;
 use database::leveldb;
 
 pub struct Client {
-    taple_node: Node<LevelDBManager, LDBCollection>,
+    kore_node: Node<LevelDBManager, LDBCollection>,
     cancellation_token: CancellationToken,
 }
 
@@ -23,14 +23,14 @@ impl Client {
     pub fn build(settings: ClientSettings) -> Result<Self, Box<dyn Error>> {
         let cancellation_token = CancellationToken::new();
 
-        let (taple_node, taple_api, keys) = kore::build(&settings, cancellation_token.clone())?;
+        let (kore_node, kore_api, keys) = kore::build(&settings, cancellation_token.clone())?;
 
         if settings.http {
-            http::build(settings, taple_api, keys, cancellation_token.clone());
+            http::build(settings, kore_api, keys, cancellation_token.clone());
         }
 
         Ok(Client {
-            taple_node,
+            kore_node,
             cancellation_token,
         })
     }
@@ -48,7 +48,7 @@ impl Client {
     where
         H: Fn(Notification),
     {
-        self.taple_node
+        self.kore_node
             .handle_notifications(notifications_handler)
             .await;
         self.cancellation_token.cancel();

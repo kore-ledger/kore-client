@@ -18,16 +18,16 @@ pub fn build(
     };
 
     let keys = {
-        let derivator = &settings.taple.node.key_derivator;
-        let secret_key = &settings.taple.node.secret_key;
+        let derivator = &settings.kore.node.key_derivator;
+        let secret_key = &settings.kore.node.secret_key;
         KeyPair::from_hex(derivator, secret_key).expect("Key derivated")
     };
 
-    let (taple_node, taple_api) = Node::build(settings.taple.clone(), db)?;
+    let (kore_node, kore_api) = Node::build(settings.kore.clone(), db)?;
 
-    taple_node.bind_with_shutdown(async move {
+    kore_node.bind_with_shutdown(async move {
         cancellation_token.cancelled().await;
     });
 
-    Ok((taple_node, taple_api, keys))
+    Ok((kore_node, kore_api, keys))
 }

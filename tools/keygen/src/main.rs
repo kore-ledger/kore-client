@@ -8,8 +8,8 @@ use kore_base::identifier::{Derivable, KeyIdentifier};
 
 #[derive(Parser, Default, Debug)]
 #[command(override_help = "
-    MC generation utility for TAPLE nodes\n
-\x1b[1m\x1b[4mUsage\x1b[0m: taple-keygen [OPTIONS] \n
+    MC generation utility for KORE nodes\n
+\x1b[1m\x1b[4mUsage\x1b[0m: kore-keygen [OPTIONS] \n
 \x1b[1m\x1b[4mOptions\x1b[0m:
     \x1b[1m-m, --mode\x1b[0m           Algorithm to use: ed25519 (default), secp256k1
     \x1b[1m-f, --format\x1b[0m         Output format: yaml(default), json
