@@ -1,11 +1,11 @@
 mod client;
 mod error;
-mod taple;
+mod kore;
 
 pub use self::client::{client_settings_builder, ClientSettings};
 use easy_settings::SettingsMap;
 pub use error::SettingsError;
-pub use taple::Settings;
+pub use kore::Settings;
 
 pub trait SettingsGenerator {
     fn generate(data: &SettingsMap) -> Result<Self, SettingsError>

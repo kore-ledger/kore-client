@@ -1,11 +1,11 @@
 use easy_settings::{ParamType, SettingsMap};
 use easy_settings::{SettingSchemaBuilder, SettingsBuilder};
-use taple_core::{DigestDerivator, KeyDerivator, ListenAddr, Settings};
+use kore_base::{DigestDerivator, KeyDerivator, ListenAddr, Settings};
 
 use crate::settings::create_path;
 use crate::settings::SettingsError;
 
-use super::taple::extract_key_derivator;
+use super::kore::extract_key_derivator;
 use super::{extract_boolean, extract_from_map, extract_list, SettingsGenerator};
 
 #[derive(Clone, Debug)]

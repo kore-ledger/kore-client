@@ -2,7 +2,7 @@ use std::{collections::HashSet, str::FromStr};
 
 use serde::Serialize;
 use serde_json::Value;
-use taple_core::{
+use kore_base::{
     crypto::KeyPair,
     identifier::{Derivable, DigestIdentifier},
     signature::{Signature, Signed},
@@ -10,7 +10,7 @@ use taple_core::{
 };
 use warp::Rejection;
 
-use taple_core::{Api, ApiError};
+use kore_base::{Api, ApiError};
 
 use crate::http::api::querys::GetWithPaginationString;
 use crate::{http::api::querys::AddKeysQuery, http::api::querys::KeyAlgorithms};

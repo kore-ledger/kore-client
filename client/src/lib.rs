@@ -1,7 +1,7 @@
 mod database;
 mod http;
 pub mod settings;
-mod taple;
+mod kore;
 
 use ::futures::Future;
 use database::leveldb::{LDBCollection, LevelDBManager};
@@ -9,7 +9,7 @@ use settings::ClientSettings;
 
 use std::error::Error;
 
-use taple_core::{Node, Notification};
+use kore_base::{Node, Notification};
 use tokio_util::sync::CancellationToken;
 
 use database::leveldb;
@@ -23,7 +23,7 @@ impl Client {
     pub fn build(settings: ClientSettings) -> Result<Self, Box<dyn Error>> {
         let cancellation_token = CancellationToken::new();
 
-        let (taple_node, taple_api, keys) = taple::build(&settings, cancellation_token.clone())?;
+        let (taple_node, taple_api, keys) = kore::build(&settings, cancellation_token.clone())?;
 
         if settings.http {
             http::build(settings, taple_api, keys, cancellation_token.clone());

@@ -1,12 +1,12 @@
 [package]
-name = "taple-client"
+name = "kore-client"
 version.workspace = true
 authors.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 
 [[bin]]
-name = "taple-client"
+name = "kore-client"
 path = "src/main.rs"
 
 [dependencies]
@@ -25,6 +25,7 @@ tempfile = { workspace = true }
 hex = { workspace = true }
 home = { workspace = true }
 taple-core = { workspace = true, features = ["all"] }
+kore-base = { workspace = true, features = ["all"] }
 easy_settings = { path = "../easy_settings" }
 leveldb = { workspace = true }
 db-key = { workspace = true }

@@ -3,7 +3,7 @@ pub mod doc;
 
 pub use api::routes;
 use std::{net::SocketAddr, sync::Arc};
-use taple_core::{crypto::KeyPair, Api};
+use kore_base::{crypto::KeyPair, Api};
 use tokio_util::sync::CancellationToken;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::Config;

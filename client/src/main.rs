@@ -1,5 +1,5 @@
 use env_logger::Env;
-use taple_client::{
+use kore_client::{
     settings::{client_settings_builder, ClientSettings, SettingsGenerator},
     Client,
 };

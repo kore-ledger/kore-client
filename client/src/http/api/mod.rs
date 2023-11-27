@@ -9,9 +9,9 @@ use super::api::handlers::*;
 use super::api::querys::*;
 use super::api::responses::ErrorResponse;
 use serde::de::DeserializeOwned;
-use taple_core::crypto::KeyPair;
-use taple_core::DigestDerivator;
-use taple_core::{Api, KeyDerivator};
+use kore_base::crypto::KeyPair;
+use kore_base::DigestDerivator;
+use kore_base::{Api, KeyDerivator};
 use warp::body::BodyDeserializeError;
 use warp::{http::Response, hyper::StatusCode, Filter, Rejection, Reply};
 

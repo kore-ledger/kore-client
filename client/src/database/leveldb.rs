@@ -8,7 +8,7 @@ use leveldb::{
 use std::cell::Cell;
 use std::path::Path;
 use std::sync::Arc;
-use taple_core::{
+use kore_base::{
     test_database_manager_trait, DatabaseCollection, DatabaseManager, DbError as Error,
 };
 

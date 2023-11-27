@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use taple_core::KeyDerivator;
+use kore_base::KeyDerivator;
 use utoipa::{IntoParams, ToSchema};
 #[derive(Debug, Clone, Deserialize, IntoParams)]
 #[into_params(parameter_in = Query)]

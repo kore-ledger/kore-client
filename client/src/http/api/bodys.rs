@@ -5,7 +5,7 @@ use borsh::BorshSerialize;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::fmt::Debug;
-use taple_core::{
+use kore_base::{
     identifier::{Derivable, DigestIdentifier, KeyIdentifier, SignatureIdentifier},
     request::{EOLRequest, EventRequest, FactRequest, StartRequest, TransferRequest},
     signature::{Signature, Signed},

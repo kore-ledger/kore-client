@@ -1,4 +1,4 @@
-use taple_core::ApiError;
+use kore_base::ApiError;
 use thiserror::Error;
 use warp::reject;
 

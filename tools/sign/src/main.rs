@@ -2,7 +2,7 @@ use clap::{Parser, ValueEnum};
 
 use serde::{Deserialize, Serialize};
 
-use taple_core::{signature::Signature, EventRequest};
+use kore_base::{signature::Signature, EventRequest};
 
 #[derive(Parser, Default, Debug)]
 #[clap(
@@ -46,15 +46,15 @@ pub enum DigestDerivator {
     SHA3_512,
 }
 
-impl Into<taple_core::DigestDerivator> for DigestDerivator {
-    fn into(self) -> taple_core::DigestDerivator {
+impl Into<kore_base::DigestDerivator> for DigestDerivator {
+    fn into(self) -> kore_base::DigestDerivator {
         match self {
-            DigestDerivator::Blake3_256 => taple_core::DigestDerivator::Blake3_256,
-            DigestDerivator::Blake3_512 => taple_core::DigestDerivator::Blake3_512,
-            DigestDerivator::SHA2_256 => taple_core::DigestDerivator::SHA2_256,
-            DigestDerivator::SHA2_512 => taple_core::DigestDerivator::SHA2_512,
-            DigestDerivator::SHA3_256 => taple_core::DigestDerivator::SHA3_256,
-            DigestDerivator::SHA3_512 => taple_core::DigestDerivator::SHA3_512,
+            DigestDerivator::Blake3_256 => kore_base::DigestDerivator::Blake3_256,
+            DigestDerivator::Blake3_512 => kore_base::DigestDerivator::Blake3_512,
+            DigestDerivator::SHA2_256 => kore_base::DigestDerivator::SHA2_256,
+            DigestDerivator::SHA2_512 => kore_base::DigestDerivator::SHA2_512,
+            DigestDerivator::SHA3_256 => kore_base::DigestDerivator::SHA3_256,
+            DigestDerivator::SHA3_512 => kore_base::DigestDerivator::SHA3_512,
         }
     }
 }

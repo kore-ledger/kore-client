@@ -2,7 +2,7 @@ use env_logger::Env;
 
 use easy_settings::SettingsMap;
 
-use taple_client::{
+use kore_client::{
     settings::{ClientSettings, SettingsGenerator},
     Client,
 };

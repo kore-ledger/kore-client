@@ -3,8 +3,8 @@ use std::str::FromStr;
 use clap::{Parser, ValueEnum};
 use libp2p::core::PeerId;
 use libp2p::identity::{ed25519::Keypair as EdKeyPair, secp256k1::SecretKey};
-use taple_core::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial, KeyPair, Secp256k1KeyPair};
-use taple_core::identifier::{Derivable, KeyIdentifier};
+use kore_base::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial, KeyPair, Secp256k1KeyPair};
+use kore_base::identifier::{Derivable, KeyIdentifier};
 
 #[derive(Parser, Default, Debug)]
 #[command(override_help = "

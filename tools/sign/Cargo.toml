@@ -1,12 +1,12 @@
 [package]
-name = "taple-sign"
+name = "kore-sign"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-taple-core = { workspace = true }
+kore-base = { workspace = true }
 hex = { workspace = true }
 clap = { workspace = true }
 serde = { workspace = true }

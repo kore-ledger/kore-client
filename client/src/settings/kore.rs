@@ -1,6 +1,6 @@
 use easy_settings::SettingsMap;
-use taple_core::{DigestDerivator, KeyDerivator};
-pub use taple_core::{NetworkSettings, NodeSettings, Settings};
+use kore_base::{DigestDerivator, KeyDerivator};
+pub use kore_base::{NetworkSettings, NodeSettings, Settings};
 
 use crate::settings::create_path;
 

@@ -1,5 +1,5 @@
 [package]
-name = "taple-patch"
+name = "kore-patch"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

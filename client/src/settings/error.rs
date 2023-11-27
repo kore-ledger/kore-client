@@ -1,4 +1,4 @@
-use taple_core::ListenAddrErrors;
+use kore_base::ListenAddrErrors;
 use thiserror::Error;
 
 #[derive(Error, Debug)]

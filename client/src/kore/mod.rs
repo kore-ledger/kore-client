@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use taple_core::{crypto::KeyPair, Api, Node};
+use kore_base::{crypto::KeyPair, Api, Node};
 use tokio_util::sync::CancellationToken;
 
 use crate::{
@@ -11,7 +11,7 @@ use crate::{
 pub fn build(
     settings: &ClientSettings,
     cancellation_token: CancellationToken,
-) -> Result<(Node<LevelDBManager, LDBCollection>, Api, KeyPair), taple_core::Error> {
+) -> Result<(Node<LevelDBManager, LDBCollection>, Api, KeyPair), kore_base::Error> {
     let db = {
         let db = open_db(Path::new(&settings.db_path));
         LevelDBManager::new(db)

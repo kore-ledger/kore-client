@@ -2,44 +2,45 @@
 members = ["easy_settings", "client", "tools/keygen", "tools/patch", "tools/sign"]
 
 [workspace.package]
-version = "0.4.0-dev"
-authors = ["Open Canarias S.L.<taple@opencanarias.com>"]
+version = "0.1.0"
+authors = ["Kore Ledger, S.L.<info@kore-ledger.com>"]
 edition = "2021"
-description = "TAPLE Client official implementation"
+description = "Kore Client official implementation"
 readme = "./README.md"
-homepage = "https://www.taple.es"
-repository = "https://github.com/opencanarias/taple-client"
+homepage = "https://kore-ledger.com"
+repository = "https://github.com/kore-ledger/kore-client"
 license = "AGPL-3.0-only"
 keywords = ["blockchain", "distributed-ledger", "taple", "sustainability"]
-rust-version = "1.67"
+rust-version = "1.73"
 
 [workspace.dependencies]
 #taple-core = { version="0.3", features =  ["all"] }
 taple-core = { git = "https://github.com/opencanarias/taple-core", features =  ["all"], branch = "main" }
-#taple-core = { path = "../taple-core/core", features = ["all"] }
+kore-base = { git = "https://github.com/kore-ledger/kore-base", version = "0.1.2", features = ["all"], branch = "main" }
 env_logger = "0.10"
 log = "0.4"
-utoipa = "3"
-utoipa-swagger-ui = "3"
+utoipa = "4.1"
+utoipa-swagger-ui = "4.0"
 tokio = "1.20"
 tokio-util = "0.7"
 warp = "0.3.3"
-serde = { version = "1.0.100", default-features = false }
-serde_json = "1.0.97"
+serde = { version = "1.0.192", default-features = false }
+serde_json = "1.0"
 thiserror = "1"
 home = "0.5.5"
 futures = "0.3.24"
 reqwest = { version = "0.11", features = ["json"] }
 hex = "0.4.3"
-borsh = "0.10.3"
-config = "0.13.2"
-clap = { version = "~4.2", features = ["string", "derive"] }
-toml = "0.6"
+borsh = "1.2"
+config = "0.13"
+clap = { version = "~4.4", features = ["string", "derive"] }
+toml = "0.8"
 lazy_static = "1.4"
 regex = "1.7.1"
 linked_hash_set = "0.1.4"
-serial_test = "1"
+serial_test = "2.0"
 leveldb = "0.8"
+# Depends on leveldb
 db-key = "0.0.5"
 tempfile = "3.4"
 libp2p = { version = "0.45.1", default-features = false }

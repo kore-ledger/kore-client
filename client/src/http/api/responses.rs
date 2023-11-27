@@ -3,13 +3,13 @@ use std::collections::HashSet;
 use crate::http::api::bodys::SignatureBody;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use taple_core::identifier::Derivable;
-use taple_core::request::{RequestState, TapleRequest};
-use taple_core::KeyIdentifier;
-use taple_core::{
+use kore_base::identifier::Derivable;
+use kore_base::request::{RequestState, TapleRequest};
+use kore_base::KeyIdentifier;
+use kore_base::{
     ApprovalEntity, ApprovalRequest, ApprovalResponse, ApprovalState, Event, SubjectData,
 };
-use taple_core::{DigestIdentifier, ValidationProof};
+use kore_base::{DigestIdentifier, ValidationProof};
 use utoipa::ToSchema;
 
 use super::bodys::SignedBody;
