@@ -7,7 +7,7 @@ use kore_client::{
     Client,
 };
 
-use kore_core::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial};
+use kore_base::crypto::{Ed25519KeyPair, KeyGenerator, KeyMaterial};
 use tempfile::tempdir;
 use tokio::sync::oneshot;
 
